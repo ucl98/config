@@ -1,5 +1,6 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -25,8 +26,12 @@ require("lazy").setup({
     end,
   },
   {
+    "nvim-lua/plenary.nvim",
+    lazy = false,
+  },
+  {
     "ThePrimeagen/harpoon",
-    lazy = false
+    lazy = false,
   },
   { import = "plugins" },
 }, lazy_config)
@@ -37,9 +42,20 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
 
-vim.api.nvim_set_keymap('n', '<leader>mm', :lua require('harpoon.mark').add_file())
-
 vim.schedule(function()
   require "mappings"
 end)
+
+require('telescope').setup{
+  pickers = {
+    oldfiles = {
+      cwd_only = true,
+    }
+  },
+   defaults = {
+     file_ignore_patterns = {"%.png", "%.mov", "%.gif"}
+   }
+}
+
+require("telescope").load_extension('harpoon')
 
