@@ -52,8 +52,8 @@ require('telescope').setup{
       cwd_only = true,
     }
   },
-   defaults = {
-     file_ignore_patterns = {"%.png", "%.mov", "%.gif"}
+  defaults = {
+    file_ignore_patterns = {"%.png", "%.mov", "%.gif"}
    }
 }
 
