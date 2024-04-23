@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+
 return {
   skip_close_confirmation_for_processes_named = {
     'tmux',
@@ -36,5 +37,12 @@ return {
 	    action = wezterm.action.OpenLinkAtMouseCursor,
 	  },
 	},
+  keys = {
+    {
+      key = 'v', mods = 'CTRL', action = wezterm.action.PasteFrom('Clipboard'),
+      key = 'c', mods = 'CTRL', action = wezterm.action.CopyTo('Clipboard'),
+      key = 'x', mods = 'CTRL', action = wezterm.action{SendString = "\x03"},
+    },
+  }
 }
 
