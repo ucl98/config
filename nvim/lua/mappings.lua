@@ -20,11 +20,13 @@ map("n", '<leader>mm', ":lua require('harpoon.mark').add_file()<CR>")
 map("n", '<leader>ht', ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
 
 -- ChatGPT
-map("n", '<leader>ct', ":ChatGPT<CR>")
+map("n", '<leader>ct', ":GpChatToggle popup<CR>")
+
+-- Transparent-Background
+map("n", '<leader>tt', ':lua require("base46").toggle_transparency()<CR>')
 
 -- Number key bindings for harpoon files, adjusted the silent option
-map("n", '1', ':lua require("harpoon.ui").nav_file(1)<CR>', {silent = false})
-map("n", '2', ':lua require("harpoon.ui").nav_file(2)<CR>', {silent = false})
-map("n", '3', ':lua require("harpoon.ui").nav_file(3)<CR>', {silent = false})
-map("n", '4', ':lua require("harpoon.ui").nav_file(4)<CR>', {silent = false})
+map("n", '<C-1>', ':lua require("harpoon.ui").nav_file(1)<CR>')
+map("n", '<C-2>', ':lua require("harpoon.ui").nav_file(2)<CR>')
+map("n", '<C-3>', ':lua require("harpoon.ui").nav_file(3)<CR>')
 

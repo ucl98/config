@@ -5,14 +5,10 @@
 local M = {}
 
 M.ui = {
-	theme = "onedark",
+  theme = "onedark",
   tabline = {
     enable = false
-  }
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+  },
 }
 
 return M
