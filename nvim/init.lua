@@ -25,24 +25,7 @@ require("lazy").setup({
       require "options"
     end,
   },
-  {
-    "nvim-lua/plenary.nvim",
-    lazy = false,
-  },
-  {
-    "mbbill/undotree",
-    lazy = false,
-  },
-  {
-    "ggandor/leap.nvim",
-    lazy = false,
-    -- keys = {'s'}
-  },
-  {
-    "ThePrimeagen/harpoon",
-    lazy = false,
-  },
-  { import = "plugins" },
+ { import = "plugins" },
 }, lazy_config)
 
 -- load theme
@@ -68,6 +51,6 @@ require('telescope').setup{
 
 require("telescope").load_extension('harpoon')
 
-vim.keymap.set({'n', 'x', 'o'}, 's',  '<Plug>(leap-forward)')
-vim.keymap.set({'n', 'x', 'o'}, 'S',  '<Plug>(leap-backward)')
+-- vim.keymap.set({'n', 'x', 'o'}, 's',  '<Plug>(leap-forward)')
+-- vim.keymap.set({'n', 'x', 'o'}, 'S',  '<Plug>(leap-backward)')
 
