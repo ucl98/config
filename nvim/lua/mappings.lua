@@ -20,7 +20,8 @@ map("n", '<leader>mm', ":lua require('harpoon.mark').add_file()<CR>")
 map("n", '<leader>ht', ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
 
 -- ChatGPT
-map("n", '<leader>ct', ":GpChatToggle popup<CR>")
+map("n", '<C-g><C-t>', ":GpChatToggle popup<CR>")
+map("n", '<C-g><C-r>', ":GpChatNew popup<CR>")
 
 -- Transparent-Background
 map("n", '<leader>tt', ':lua require("base46").toggle_transparency()<CR>')
