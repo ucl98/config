@@ -18,7 +18,6 @@ return {
 	-- 	hue = 1.0,
 	-- 	saturation = 0.5,
 	-- },
-	-- window_background_opacity = 0.92,
 	window_background_opacity = 0.7,
 	-- window_background_opacity = 0.20,
   window_decorations = 'RESIZE',
@@ -40,9 +39,13 @@ return {
   keys = {
     {
       key = 'v', mods = 'CTRL', action = wezterm.action.PasteFrom('Clipboard'),
-      key = 'c', mods = 'CTRL', action = wezterm.action.CopyTo('Clipboard'),
-      key = 'x', mods = 'CTRL', action = wezterm.action{SendString = "\x03"},
     },
+    {
+      key = 'c', mods = 'CTRL', action = wezterm.action.CopyTo('Clipboard'),
+    },
+    {
+      key = 'x', mods = 'CTRL', action = wezterm.action{SendString = "\x03"},
+    }
   }
 }
 
