@@ -6,6 +6,9 @@ local M = {}
 
 M.ui = {
   theme = "onedark",
+  tabufline = {
+    enabled = false,
+  },
   tabline = {
     enable = false
   },

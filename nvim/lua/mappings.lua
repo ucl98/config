@@ -8,9 +8,11 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "kj", "<ESC>")
 
--- 
+-- Telescope keybindings
 map("n", "<leader>fm", ':Telescope harpoon marks<CR>')
 map("n", '<leader>fg', ':Telescope oldfiles<CR>', {silent = false})
+
+-- Undotree keybindings
 map("n", '<leader>rr', ":UndotreeToggle<CR>")
 
 -- Harpoon keybindings

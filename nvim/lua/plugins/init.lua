@@ -22,10 +22,6 @@ return {
     end,
     lazy = false,
   },
-  -- {
-  --   "xiyaowong/transparent.nvim",
-  --   lazy = false,
-  -- },
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
@@ -40,15 +36,6 @@ return {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
-  },
-  {
-  	"williamboman/mason.nvim",
-  	opts = {
-  		ensure_installed = {
-  			"lua-language-server", "stylua",
-  			"html-lsp", "css-lsp" , "prettier"
-  		},
-  	},
   },
   {
     "nvim-lua/plenary.nvim",
