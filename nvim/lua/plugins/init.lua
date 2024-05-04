@@ -22,6 +22,13 @@ return {
     end,
     lazy = false,
   },
+  -- {
+  --   
+  -- },
+  {
+    "dccsillag/magma-nvim",
+    lazy = false,
+  },
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
