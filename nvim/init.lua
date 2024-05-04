@@ -1,6 +1,8 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+-- vim.g.loaded_python3_provider = 1
+-- vim.g.python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.11/bin/python3'
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -27,6 +29,14 @@ require("lazy").setup({
   },
  { import = "plugins" },
 }, lazy_config)
+
+local enable_providers = {
+      "python3_provider",
+    }
+    for _, plugin in pairs(enable_providers) do
+      vim.g["loaded_" .. plugin] = nil
+      vim.cmd("runtime " .. plugin)
+    end
 
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
