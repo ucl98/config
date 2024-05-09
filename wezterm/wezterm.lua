@@ -36,16 +36,17 @@ return {
 	    action = wezterm.action.OpenLinkAtMouseCursor,
 	  },
 	},
-  keys = {
-    {
-      key = 'v', mods = 'CTRL', action = wezterm.action.PasteFrom('Clipboard'),
-    },
-    {
-      key = 'c', mods = 'CTRL', action = wezterm.action.CopyTo('Clipboard'),
-    },
-    {
-      key = 'x', mods = 'CTRL', action = wezterm.action{SendString = "\x03"},
-    }
-  }
+  -- DANGEROUS! It effects all key-presses including those meant for vim or tmux!
+  -- keys = {
+  --   {
+  --     key = 'v', mods = 'CTRL', action = wezterm.action.PasteFrom('Clipboard'),
+  --   },
+  --   {
+  --     key = 'c', mods = 'CTRL', action = wezterm.action.CopyTo('Clipboard'),
+  --   },
+  --   {
+  --     key = 'x', mods = 'CTRL', action = wezterm.action{SendString = "\x03"},
+  --   }
+  -- }
 }
 

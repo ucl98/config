@@ -11,6 +11,7 @@ map("i", "kj", "<ESC>")
 -- Telescope keybindings
 map("n", "<leader>fm", ':Telescope harpoon marks<CR>')
 map("n", '<leader>fg', ':Telescope oldfiles<CR>', {silent = false})
+map("n", "<leader>fd", ':Telescope live_grep<CR>')
 
 -- Undotree keybindings
 map("n", '<leader>rr', ":UndotreeToggle<CR>")
