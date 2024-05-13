@@ -15,7 +15,7 @@ return {
               name = "ChatGPT4",
               chat = true,
               command = false,
-              model = { model = "gpt-4-turbo-preview", temperature = 0.1, top_p = 1 },
+              model = { model = "gpt-4o", temperature = 0.1, top_p = 1 },
               system_prompt = "You are assisting a seasoned programmer. Your answers are concise and you will not explain them."
            },
         },
