@@ -35,6 +35,11 @@ return {
 	    mods = 'CTRL',
 	    action = wezterm.action.OpenLinkAtMouseCursor,
 	  },
+    {
+      event = { Down = { streak = 1, button = "Right" } },
+      mods = "NONE",
+      action = wezterm.action({ PasteFrom = "Clipboard" }),
+    },
 	},
   -- DANGEROUS! It effects all key-presses including those meant for vim or tmux!
   -- keys = {
