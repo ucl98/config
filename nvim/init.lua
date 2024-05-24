@@ -249,7 +249,6 @@ require("lazy").setup({
 					},
 				},
 			})
-			vim.api.nvim_set_keymap("n", "q", ":GpChatToggle popup<CR>", { noremap = true, silent = true })
 		end,
 		lazy = false,
 	},
