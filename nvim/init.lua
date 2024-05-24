@@ -249,6 +249,7 @@ require("lazy").setup({
 					},
 				},
 			})
+			vim.api.nvim_set_keymap("n", "q", ":GpChatToggle popup<CR>", { noremap = true, silent = true })
 		end,
 		lazy = false,
 	},
@@ -445,9 +446,9 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
 			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-			-- vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
+			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 			-- vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-			vim.keymap.set("n", "<leader>sr", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+			vim.keymap.set("n", "<leader>se", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 			vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -1004,7 +1005,7 @@ map_keys("n", "<C-g><C-r>", ":GpChatNew popup<CR>")
 map_keys("n", "<C-q>", ":lua require('harpoon.ui').nav_prev()<CR>")
 map_keys("n", "<C-e>", ":lua require('harpoon.ui').nav_next()<CR>")
 
-map_keys("n", "<leader>mr", ":UndotreeToggle<CR>")
+map_keys("n", "<leader>rr", ":UndotreeToggle<CR>")
 map_keys("n", "<leader>tt", ":lua require('base46').toggle_transparency()<CR>")
 map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
 
