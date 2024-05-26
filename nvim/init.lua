@@ -229,6 +229,21 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	{
+		"voldikss/vim-floaterm",
+		lazy = false,
+	},
+
+	{
+		"tpope/vim-fugitive",
+		lazy = false,
+	},
+
+	{
+		"sindrets/diffview.nvim",
+		lazy = false,
+	},
+
+	{
 		"robitx/gp.nvim",
 		config = function()
 			require("gp").setup({
@@ -252,6 +267,7 @@ require("lazy").setup({
 		end,
 		lazy = false,
 	},
+
 	{
 		"gorbit99/codewindow.nvim",
 		config = function()
@@ -261,6 +277,7 @@ require("lazy").setup({
 		end,
 		lazy = false,
 	},
+
 	{
 		"mbbill/undotree",
 		lazy = false,
@@ -640,7 +657,7 @@ require("lazy").setup({
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
-				-- clangd = {},
+				clangd = {},
 				-- gopls = {},
 				-- pyright = {},
 				-- rust_analyzer = {},
@@ -993,8 +1010,8 @@ require("lazy").setup({
 -- keybindings
 local map_keys = vim.keymap.set
 
-map_keys("i", "lk", "<ESC>")
-map_keys("i", "kl", "<ESC>")
+-- map_keys("i", "lk", "<ESC>")
+-- map_keys("i", "kl", "<ESC>")
 map_keys("i", "kj", "<ESC>")
 map_keys("i", "jk", "<ESC>")
 
@@ -1007,6 +1024,30 @@ map_keys("n", "<C-e>", ":lua require('harpoon.ui').nav_next()<CR>")
 map_keys("n", "<leader>rr", ":UndotreeToggle<CR>")
 map_keys("n", "<leader>tt", ":lua require('base46').toggle_transparency()<CR>")
 map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
+
+map_keys("n", "<leader>do", ":DiffviewOpen<CR>")
+map_keys("n", "<leader>dc", ":DiffviewClose<CR>")
+map_keys("n", "<leader>dh", ":DiffviewFileHistory<CR>")
+
+map_keys("n", "<leader>ft", ":FloatermToggle<CR>")
+map_keys("n", "<leader>fe", ":FloatermNew<CR>")
+map_keys("n", "<leader>fx", ":FloatermKill<CR>")
+
+vim.api.nvim_set_keymap("n", "[c", "<cmd>Gitsigns prev_hunk<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "]c", "<cmd>Gitsigns next_hunk<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap(
+	"n",
+	"[p",
+	"<cmd>lua require'gitsigns'.prev_hunk(); require'gitsigns'.preview_hunk()<CR>",
+	{ noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+	"n",
+	"]p",
+	"<cmd>lua require'gitsigns'.next_hunk(); require'gitsigns'.preview_hunk()<CR>",
+	{ noremap = true, silent = true }
+)
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
