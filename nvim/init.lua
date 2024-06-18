@@ -243,6 +243,26 @@ require("lazy").setup({
 	},
 
 	{
+		"stevearc/oil.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		lazy = false,
+	},
+
+	{
+		"nvim-tree/nvim-tree.lua",
+		version = "*",
+		lazy = false,
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("nvim-tree").setup({})
+		end,
+	},
+
+	{
 		"robitx/gp.nvim",
 		config = function()
 			require("gp").setup({
@@ -1031,6 +1051,9 @@ map_keys("n", "<leader>dh", ":DiffviewFileHistory<CR>")
 map_keys("n", "<leader>ft", ":FloatermToggle<CR>")
 map_keys("n", "<leader>fe", ":FloatermNew<CR>")
 map_keys("n", "<leader>fx", ":FloatermKill<CR>")
+
+map_keys("n", "-", ":Oil<CR>")
+map_keys("n", "<leader>nn", ":NvimTreeToggle<CR>")
 
 vim.api.nvim_set_keymap("n", "[c", "<cmd>Gitsigns prev_hunk<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "]c", "<cmd>Gitsigns next_hunk<CR>", { noremap = true, silent = true })
