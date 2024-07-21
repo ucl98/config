@@ -2,14 +2,14 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 
-wezterm.on("gui-startup", function()
-	local _, _, window = mux.spawn_window({ args = { "tmux", "new-session", "-A", "-s", "0" } })
-	window:gui_window():perform_action(
-		wezterm.action({ SendString = "tmux source ~/.config/tmux/tmux.reset.conf\n" }),
-		window:active_pane()
-	)
-	window:gui_window():perform_action(wezterm.action({ SendString = "clear\n" }), window:active_pane())
-end)
+-- wezterm.on("gui-startup", function()
+-- 	local _, _, window = mux.spawn_window({ args = { "tmux", "new-session", "-A", "-s", "0" } })
+-- 	window:gui_window():perform_action(
+-- 		wezterm.action({ SendString = "tmux source ~/.config/tmux/tmux.reset.conf\n" }),
+-- 		window:active_pane()
+-- 	)
+-- 	window:gui_window():perform_action(wezterm.action({ SendString = "clear\n" }), window:active_pane())
+-- end)
 
 return {
 	skip_close_confirmation_for_processes_named = {
@@ -19,10 +19,10 @@ return {
 	},
 	color_scheme = "Catppuccin Mocha",
 	enable_tab_bar = false,
-	font_size = 9.0,
+	font_size = 11.0,
 	macos_window_background_blur = 30,
 	window_background_opacity = 0.7,
-	window_decorations = "RESIZE",
+	-- window_decorations = "RESIZE",
 	window_padding = {
 		left = 0,
 		right = 0,
