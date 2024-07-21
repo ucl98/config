@@ -2,14 +2,11 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 
--- wezterm.on("gui-startup", function()
--- 	local _, _, window = mux.spawn_window({ args = { "tmux", "new-session", "-A", "-s", "0" } })
--- 	window:gui_window():perform_action(
--- 		wezterm.action({ SendString = "tmux source ~/.config/tmux/tmux.reset.conf\n" }),
--- 		window:active_pane()
--- 	)
--- 	window:gui_window():perform_action(wezterm.action({ SendString = "clear\n" }), window:active_pane())
--- end)
+wezterm.on("gui-startup", function()
+	local _, _, window = mux.spawn_window({
+		args = { "sh", "-c", "export PATH=/opt/homebrew/bin:$PATH; tmux attach || tmux new-session" },
+	})
+end)
 
 return {
 	skip_close_confirmation_for_processes_named = {
