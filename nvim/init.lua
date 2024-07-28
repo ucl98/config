@@ -503,13 +503,24 @@ require("lazy").setup({
 				})
 			end, { desc = "[S]earch [/] in Open Files" })
 
-			-- Shortcut for searching your Neovim configuration files
-			-- vim.keymap.set("n", "<leader>sn", function()
-			-- 	builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			-- end, { desc = "[S]earch [N]eovim files" })
-			-- Adjusted the code to search in my "workflows" directory which has the path "~/Documents/obsidian/documents/workflows"
 			vim.keymap.set("n", "<leader>sn", function()
-				builtin.find_files({ cwd = "~/Documents/obsidian/quickview" })
+				builtin.live_grep({
+					cwd = "~/Documents/obsidian/quartz/content",
+					file_ignore_patterns = { " %- Index.md$", "^index%.md$" },
+					hidden = false,
+					no_ignore = false,
+					case_mode = "ignore_case",
+					vimgrep_arguments = {
+						"rg",
+						"--color=never",
+						"--no-heading",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--ignore-case",
+						"--max-count=1",
+					},
+				})
 			end, { desc = "[S]earch [N]eovim files" })
 		end,
 	},
@@ -1041,7 +1052,18 @@ map_keys("n", "<C-q>", ":lua require('harpoon.ui').nav_prev()<CR>")
 map_keys("n", "<C-e>", ":lua require('harpoon.ui').nav_next()<CR>")
 
 map_keys("n", "<leader>rr", ":UndotreeToggle<CR>")
-map_keys("n", "<leader>tt", ":lua require('base46').toggle_transparency()<CR>")
+-- map_keys("n", "<leader>tt", ":lua require('base46').toggle_transparency()<CR>")
+
+vim.keymap.set("n", "<leader>tt", function()
+	vim.g.transparency = not vim.g.transparency
+	if vim.g.transparency then
+		vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+		vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+	else
+		vim.cmd("colorscheme " .. vim.g.colors_name)
+	end
+end, { desc = "Toggle transparency" })
+
 map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
 
 map_keys("n", "<leader>do", ":DiffviewOpen<CR>")
