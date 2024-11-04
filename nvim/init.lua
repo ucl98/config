@@ -110,7 +110,7 @@ vim.g.have_nerd_font = true
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -259,6 +259,14 @@ require("lazy").setup({
 		},
 		config = function()
 			require("nvim-tree").setup({})
+		end,
+	},
+
+	{
+		"ggandor/leap.nvim",
+		lazy = false,
+		config = function()
+			require("leap").create_default_mappings()
 		end,
 	},
 
@@ -505,7 +513,7 @@ require("lazy").setup({
 
 			vim.keymap.set("n", "<leader>sn", function()
 				builtin.live_grep({
-					cwd = "~/Documents/obsidian/quartz/content",
+					cwd = "~/Documents/obsidian/documents/workflows/",
 					file_ignore_patterns = { " %- Index.md$", "^index%.md$" },
 					hidden = false,
 					no_ignore = false,
@@ -937,7 +945,7 @@ require("lazy").setup({
 			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
 			-- - sd'   - [S]urround [D]elete [']quotes
 			-- - sr)'  - [S]urround [R]eplace [)] [']
-			require("mini.surround").setup()
+			-- require("mini.surround").setup()
 
 			-- Simple and easy statusline.
 			--  You could remove this setup call if you don't like it,
@@ -1096,6 +1104,6 @@ vim.api.nvim_set_keymap(
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
