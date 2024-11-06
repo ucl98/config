@@ -270,30 +270,30 @@ require("lazy").setup({
 		end,
 	},
 
-	{
-		"robitx/gp.nvim",
-		config = function()
-			require("gp").setup({
-				chat_template = "",
-				agents = {
-					-- Disable ChatGPT 3.5
-					{
-						name = "ChatGPT3-5",
-						chat = false, -- just name would suffice
-						command = false, -- just name would suffice
-					},
-					{
-						name = "ChatGPT4",
-						chat = true,
-						command = false,
-						model = { model = "gpt-4o", temperature = 0.1, top_p = 1 },
-						system_prompt = "You are assisting a seasoned programmer. Your answers are concise and you will not explain them. If possible provide only code snippets.",
-					},
-				},
-			})
-		end,
-		lazy = false,
-	},
+	-- {
+	-- 	"robitx/gp.nvim",
+	-- 	config = function()
+	-- 		require("gp").setup({
+	-- 			chat_template = "",
+	-- 			agents = {
+	-- 				-- Disable ChatGPT 3.5
+	-- 				{
+	-- 					name = "ChatGPT3-5",
+	-- 					chat = false, -- just name would suffice
+	-- 					command = false, -- just name would suffice
+	-- 				},
+	-- 				{
+	-- 					name = "ChatGPT4",
+	-- 					chat = true,
+	-- 					command = false,
+	-- 					model = { model = "gpt-4o", temperature = 0.1, top_p = 1 },
+	-- 					system_prompt = "You are assisting a seasoned programmer. Your answers are concise and you will not explain them. If possible provide only code snippets.",
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- 	lazy = false,
+	-- },
 
 	{
 		"gorbit99/codewindow.nvim",

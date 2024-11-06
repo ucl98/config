@@ -2,11 +2,11 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 
-wezterm.on("gui-startup", function()
-	local _, _, window = mux.spawn_window({
-		args = { "sh", "-c", "export PATH=/opt/homebrew/bin:$PATH; tmux attach || tmux new-session" },
-	})
-end)
+-- wezterm.on("gui-startup", function()
+-- 	local _, _, window = mux.spawn_window({
+-- 		args = { "sh", "-c", "export PATH=/opt/homebrew/bin:$PATH; tmux attach || tmux new-session" },
+-- 	})
+-- end)
 
 return {
 	skip_close_confirmation_for_processes_named = {
