@@ -1092,6 +1092,18 @@ map_keys("n", "<leader>fx", ":FloatermKill<CR>")
 map_keys("n", "<leader>q", ":bprevious<CR>")
 map_keys("n", "<leader>e", ":bnext<CR>")
 
+map_keys("n", "<leader>q", ":bprevious<CR>")
+map_keys("n", "<leader>e", ":bnext<CR>")
+
+map_keys("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", { noremap = true, silent = true })
+map_keys("n", "<leader>d1", ":lua require'dap'.continue()<CR>", { noremap = true, silent = true })
+map_keys("n", "<leader>d2", ":lua require'dap'.step_over()<CR>", { noremap = true, silent = true })
+map_keys("n", "<leader>d3", ":lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
+map_keys("n", "<leader>d5", ":lua require'dap'.terminate()<CR>", { noremap = true, silent = true })
+
+map_keys("n", "<leader>q", ":bprevious<CR>")
+map_keys("n", "<leader>e", ":bnext<CR>")
+
 map_keys("n", "-", ":Oil<CR>")
 map_keys("n", "<leader>nn", ":NvimTreeToggle<CR>")
 
