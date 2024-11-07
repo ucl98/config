@@ -13,8 +13,8 @@
 - `space d 5` - terminate
 
 #### Search
-- `space \` - Grep serach in buffer
-- `spcae s \` - Grep search in open files 
+- `space /` - Grep serach in buffer
+- `spcae s /` - Grep search in open files 
 - `space s n` - Search in my workflows
 - `space s h` - Search help tags
 - `space s k` - Search keymaps
@@ -32,11 +32,6 @@
 - `g r` - Go to references
 - `g I` - Go to implementation
 - `K` - show definition
-- `space D` - Type definition
-- `space d s` - Docment symbols
-- `space w s` - Workspace symbols
-- `space r n` - Rename
-- `space c a` - Code action
 
 #### Vi - multi-cursor
 - `ctrl v` - allows selecting multiple lines
