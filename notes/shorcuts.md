@@ -1,6 +1,9 @@
 ## Shortcuts
 #### Vim
 - `:e` - reload document (discard changes)
+- `ctrl w _` - max out height
+- `ctrl w |` - max out width
+- `ctrl w =` - max windows equal in size
 
 #### Search
 - `space \` - Grep serach in buffer
