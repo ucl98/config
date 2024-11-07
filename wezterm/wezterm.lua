@@ -16,7 +16,7 @@ return {
 	},
 	color_scheme = "Catppuccin Mocha",
 	enable_tab_bar = false,
-	font_size = 11.0,
+	font_size = 15.0,
 	macos_window_background_blur = 30,
 	window_background_opacity = 0.7,
 	-- window_decorations = "RESIZE",
