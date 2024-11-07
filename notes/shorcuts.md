@@ -34,6 +34,12 @@
 - `A` - inserts at the end
 - `ctrl v } $ A` allows adding characters to the end of all lines
 
+#### Floatterm
+- `<space> f t` - FloatermToggle
+- `<space> f e` - FloattermNew
+- `<space> f x` - FloatermKill
+- `esc esc` - not floatterm focus
+
 #### Others
 - `space f` - auto-format
 - `ctrl o` - jump back
