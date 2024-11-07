@@ -513,7 +513,7 @@ require("lazy").setup({
 
 			vim.keymap.set("n", "<leader>sn", function()
 				builtin.live_grep({
-					cwd = "~/Documents/obsidian/documents/workflows/",
+					cwd = "/workspace/notes",
 					file_ignore_patterns = { " %- Index.md$", "^index%.md$" },
 					hidden = false,
 					no_ignore = false,
