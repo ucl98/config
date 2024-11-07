@@ -5,6 +5,13 @@
 - `ctrl w |` - max out width
 - `ctrl w =` - max windows equal in size
 
+#### Debug-Py
+- `space d b` - toggle breakpoint
+- `space d 1` - continue
+- `space d 2` - step over
+- `space d 3` - step into
+- `space d 5` - terminate
+
 #### Search
 - `space \` - Grep serach in buffer
 - `spcae s \` - Grep search in open files 
