@@ -1106,4 +1106,5 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
---
+
+vim.g.which_key_check_mappings = false
