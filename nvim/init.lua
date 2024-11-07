@@ -1089,6 +1089,9 @@ map_keys("n", "<leader>ft", ":FloatermToggle<CR>")
 map_keys("n", "<leader>fe", ":FloatermNew<CR>")
 map_keys("n", "<leader>fx", ":FloatermKill<CR>")
 
+map_keys("n", "<leader>q", ":bprevious<CR>")
+map_keys("n", "<leader>e", ":bnext<CR>")
+
 map_keys("n", "-", ":Oil<CR>")
 map_keys("n", "<leader>nn", ":NvimTreeToggle<CR>")
 
