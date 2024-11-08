@@ -522,7 +522,7 @@ require("lazy").setup({
 							["q"] = require("telescope.actions").close,
 						},
 					},
-					file_ignore_patterns = { "%.png", "%.mov", "%.gif" },
+					file_ignore_patterns = { "%.png", "%.mov", "%.gif", "%.pdf", "%.html" },
 					layout_strategy = "horizontal",
 					layout_config = {
 						horizontal = {

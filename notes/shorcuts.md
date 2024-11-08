@@ -12,6 +12,15 @@
 - `space d 3` - step into
 - `space d 5` - terminate
 
+#### DiffView
+- `space d o` - diffview open
+- `space d c` - diffview close
+- `space d h` - diffview file-history
+
+#### Git Signs
+- `]c` - previouse change
+- `[c` - next change
+
 #### Search
 - `space /` - Grep serach in buffer
 - `spcae s /` - Grep search in open files 
