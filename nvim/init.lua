@@ -228,6 +228,70 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
 	{
+		"nvim-neotest/nvim-nio",
+		lazy = false,
+	},
+
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		ft = { "python" },
+		opts = function()
+			local null_ls = require("null-ls")
+			return {
+				sources = {
+					null_ls.builtins.formatting.black,
+					-- null_ls.builtins.diagnostics.mypy,
+					null_ls.builtins.diagnostics.ruff,
+				},
+			}
+		end,
+	},
+
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = "mfussenegger/nvim-dap",
+		config = function()
+			local dap = require("dap")
+			local dapui = require("dapui")
+			dapui.setup()
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.after.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.after.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
+		end,
+	},
+
+	{
+		"mfussenegger/nvim-dap",
+	},
+
+	{
+		"mfussenegger/nvim-dap-python",
+		ft = "python",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"rcarriga/nvim-dap-ui",
+		},
+		config = function(_, opts)
+			local path = "/usr/bin/python3" -- Use the global Python interpreter
+			require("dap-python").setup(path)
+			local dap_ok, dap = pcall(require, "dap")
+			if dap_ok then
+				dap.adapters.python = {
+					type = "executable",
+					command = path,
+					args = { "-m", "debugpy.adapter" },
+				}
+			end
+		end,
+	},
+
+	{
 		"voldikss/vim-floaterm",
 		lazy = false,
 	},
