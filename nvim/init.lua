@@ -239,7 +239,7 @@ require("lazy").setup({
 			local null_ls = require("null-ls")
 			return {
 				sources = {
-					null_ls.builtins.formatting.black,
+					-- null_ls.builtins.formatting.black,
 					-- null_ls.builtins.diagnostics.mypy,
 					null_ls.builtins.diagnostics.ruff,
 				},
@@ -1159,7 +1159,7 @@ map_keys("n", "<leader>e", ":bnext<CR>")
 map_keys("n", "<leader>q", ":bprevious<CR>")
 map_keys("n", "<leader>e", ":bnext<CR>")
 
-map_keys("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", { noremap = true, silent = true })
+map_keys("n", "<leader>`", ":lua require'dap'.toggle_breakpoint()<CR>", { noremap = true, silent = true })
 map_keys("n", "<leader>1", ":lua require'dap'.continue()<CR>", { noremap = true, silent = true })
 map_keys("n", "<leader>2", ":lua require'dap'.step_over()<CR>", { noremap = true, silent = true })
 map_keys("n", "<leader>3", ":lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
