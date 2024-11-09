@@ -1171,6 +1171,11 @@ map_keys("n", "<leader>e", ":bnext<CR>")
 map_keys("n", "-", ":Oil<CR>")
 map_keys("n", "<leader>nn", ":NvimTreeToggle<CR>")
 
+-- save the program state in python
+vim.cmd([[
+  let @s = "iimport dill\<CR>globals().update(vars())\<CR>with open('/program_state.pkl', 'wb') as f: dill.dump_session(f)\<Esc>"
+]])
+
 vim.api.nvim_set_keymap("n", "[c", "<cmd>Gitsigns prev_hunk<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "]c", "<cmd>Gitsigns next_hunk<CR>", { noremap = true, silent = true })
 
