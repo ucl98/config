@@ -700,7 +700,7 @@ require("lazy").setup({
 
 					-- opens a popup that displays documentation about the word under your cursor
 					--  see `:help k` for why this keymap.
-					map("k", vim.lsp.buf.hover, "hover documentation")
+					-- map("k", vim.lsp.buf.hover, "hover documentation")
 
 					-- warn: this is not goto definition, this is goto declaration.
 					--  for example, in c this would take you to the header.
@@ -1179,8 +1179,6 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 -- the line beneath this is called `modeline`. see `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
-vim.g.which_key_check_mappings = false
 
 vim.cmd([[
   let @s = "iimport dill\<cr>all_vars = globals().copy()\<cr>all_vars.update(locals())\<cr>with open('/program_state.pkl', 'wb') as f: dill.dump(all_vars, f)\<cr>"
