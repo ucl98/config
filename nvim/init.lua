@@ -268,10 +268,10 @@ require("lazy").setup({
 				show_stop_reason = true,
 				commented = false,
 				only_first_definition = true,
-				all_references = false,
+				all_references = true,
 				filter_references_pattern = "<module",
 				virt_text_pos = "eol",
-				all_frames = false,
+				all_frames = true,
 				virt_lines = false,
 				virt_text_win_col = nil,
 			})
@@ -321,6 +321,7 @@ require("lazy").setup({
 			end
 		end,
 	},
+
 	{
 		"voldikss/vim-floaterm",
 		lazy = false,
