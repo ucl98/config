@@ -362,8 +362,8 @@ require("lazy").setup({
 				dapui.toggle({ layout = 1 })
 			end
 
-			local function toggle_default_ui()
-				dapui.toggle()
+			local function close_ui()
+				dapui.close()
 			end
 
 			local function toggle_variables_and_watches()
@@ -372,7 +372,7 @@ require("lazy").setup({
 
 			vim.keymap.set("n", "<leader>8", toggle_repl, { desc = "Toggle DAP REPL" })
 			vim.keymap.set("n", "<leader>9", toggle_variables_and_watches, { desc = "Toggle Variables and Watches" })
-			vim.keymap.set("n", "<leader>0", toggle_default_ui, { desc = "Toggle Default DAP UI" })
+			vim.keymap.set("n", "<leader>0", close_ui, { desc = "Close DAP UI" })
 
 			dap.listeners.after.event_terminated["dapui_config"] = function()
 				dapui.close()
