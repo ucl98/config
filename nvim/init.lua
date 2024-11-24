@@ -278,16 +278,102 @@ require("lazy").setup({
 		end,
 	},
 
+	-- {
+	-- 	"rcarriga/nvim-dap-ui",
+	-- 	dependencies = "mfussenegger/nvim-dap",
+	-- 	config = function()
+	-- 		local dap = require("dap")
+	-- 		local dapui = require("dapui")
+	-- 		dapui.setup()
+	-- 		-- dap.listeners.after.event_initialized["dapui_config"] = function()
+	-- 		-- 	dapui.open()
+	-- 		-- end
+	-- 		dap.listeners.after.event_terminated["dapui_config"] = function()
+	-- 			dapui.close()
+	-- 		end
+	-- 		dap.listeners.after.event_exited["dapui_config"] = function()
+	-- 			dapui.close()
+	-- 		end
+	-- 	end,
+	-- },
+
+	-- {
+	-- 	"rcarriga/nvim-dap-ui",
+	-- 	dependencies = "mfussenegger/nvim-dap",
+	-- 	config = function()
+	-- 		local dap = require("dap")
+	-- 		local dapui = require("dapui")
+	--
+	-- 		dapui.setup({
+	-- 			layouts = {
+	-- 				{
+	-- 					elements = {
+	-- 						"repl",
+	-- 					},
+	-- 					size = 80,
+	-- 					position = "right",
+	-- 				},
+	-- 			},
+	-- 		})
+	--
+	-- 		local function toggle_repl()
+	-- 			dapui.toggle({ layout = 1 })
+	-- 		end
+	--
+	-- 		vim.keymap.set("n", "<leader>ur", toggle_repl, { desc = "Toggle DAP REPL" })
+	--
+	-- 		dap.listeners.after.event_terminated["dapui_config"] = function()
+	-- 			dapui.close()
+	-- 		end
+	-- 		dap.listeners.after.event_exited["dapui_config"] = function()
+	-- 			dapui.close()
+	-- 		end
+	-- 	end,
+	-- },
+
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = "mfussenegger/nvim-dap",
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")
-			dapui.setup()
-			-- dap.listeners.after.event_initialized["dapui_config"] = function()
-			-- 	dapui.open()
-			-- end
+
+			dapui.setup({
+				layouts = {
+					{
+						elements = {
+							"repl",
+						},
+						size = 80,
+						position = "right",
+					},
+					{
+						elements = {
+							{ id = "scopes", size = 0.5 },
+							{ id = "watches", size = 0.5 },
+						},
+						size = 80,
+						position = "right",
+					},
+				},
+			})
+
+			local function toggle_repl()
+				dapui.toggle({ layout = 1 })
+			end
+
+			local function toggle_default_ui()
+				dapui.toggle()
+			end
+
+			local function toggle_variables_and_watches()
+				dapui.toggle({ layout = 2 })
+			end
+
+			vim.keymap.set("n", "<leader>8", toggle_repl, { desc = "Toggle DAP REPL" })
+			vim.keymap.set("n", "<leader>9", toggle_variables_and_watches, { desc = "Toggle Variables and Watches" })
+			vim.keymap.set("n", "<leader>0", toggle_default_ui, { desc = "Toggle Default DAP UI" })
+
 			dap.listeners.after.event_terminated["dapui_config"] = function()
 				dapui.close()
 			end
