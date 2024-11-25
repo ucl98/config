@@ -656,6 +656,9 @@ require("lazy").setup({
 					find_files = {
 						path_display = filenameFirst,
 					},
+					buffers = {
+						path_display = filenameFirst,
+					},
 				},
 				defaults = {
 					mappings = {
@@ -1345,6 +1348,19 @@ end)
 map_keys("n", "<leader>s", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
+map_keys("n", "1", function()
+	harpoon:list():select(1)
+end)
+map_keys("n", "2", function()
+	harpoon:list():select(2)
+end)
+map_keys("n", "3", function()
+	harpoon:list():select(3)
+end)
+map_keys("n", "4", function()
+	harpoon:list():select(4)
+end)
+
 map_keys("n", "<C-e>", function()
 	harpoon:list():prev()
 end)
