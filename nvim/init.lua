@@ -255,6 +255,11 @@ require("lazy").setup({
 			})
 		end,
 	},
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
 
 	{
 		"theHamsta/nvim-dap-virtual-text",
@@ -1309,6 +1314,20 @@ map_keys("n", "<leader>nn", ":nvimtreetoggle<cr>")
 
 map_keys("n", "[c", "<cmd>gitsigns prev_hunk<cr>", { noremap = true, silent = true })
 map_keys("n", "]c", "<cmd>gitsigns next_hunk<cr>", { noremap = true, silent = true })
+
+local harpoon = require("harpoon")
+map_keys("n", "<leader>a", function()
+	harpoon:list():add()
+end)
+map_keys("n", "<leader>s", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+map_keys("n", "<C-e>", function()
+	harpoon:list():prev()
+end)
+map_keys("n", "<C-q>", function()
+	harpoon:list():next()
+end)
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
