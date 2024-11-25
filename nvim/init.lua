@@ -620,6 +620,25 @@ require("lazy").setup({
 
 			-- [[ configure telescope ]]
 			-- see `:help telescope` and `:help telescope.setup()`
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "TelescopeResults",
+				callback = function(ctx)
+					vim.api.nvim_buf_call(ctx.buf, function()
+						vim.fn.matchadd("TelescopeParent", "\t\t.*$")
+						vim.api.nvim_set_hl(0, "TelescopeParent", { link = "Comment" })
+					end)
+				end,
+			})
+
+			local function filenameFirst(_, path)
+				local tail = vim.fs.basename(path)
+				local parent = vim.fs.dirname(path)
+				if parent == "." then
+					return tail
+				end
+				return string.format("%s\t\t%s", tail, parent)
+			end
+
 			require("telescope").setup({
 				-- you can put your default mappings / updates / etc. in here
 				--  all the info you're looking for is in `:help telescope.setup()`
@@ -632,6 +651,10 @@ require("lazy").setup({
 				pickers = {
 					oldfiles = {
 						cwd_only = true,
+						path_display = filenameFirst,
+					},
+					find_files = {
+						path_display = filenameFirst,
 					},
 				},
 				defaults = {
@@ -646,8 +669,8 @@ require("lazy").setup({
 					layout_config = {
 						horizontal = {
 							results_position = "bottom",
-							preview_width = 0.8,
-							results_width = 0.2,
+							preview_width = 0.7,
+							results_width = 0.3,
 						},
 					},
 				},
