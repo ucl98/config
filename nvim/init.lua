@@ -233,6 +233,32 @@ require("lazy").setup({
 	},
 
 	{
+		"voldikss/vim-floaterm",
+		lazy = false,
+	},
+
+	{
+		"tpope/vim-fugitive",
+		lazy = false,
+	},
+
+	{
+		"sindrets/diffview.nvim",
+		lazy = false,
+	},
+
+	{
+		"stevearc/oil.nvim",
+		opts = {
+			view_options = {
+				show_hidden = true,
+			},
+		},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		lazy = false,
+	},
+
+	{
 		"jose-elias-alvarez/null-ls.nvim",
 		ft = { "python" },
 		opts = function()
@@ -282,59 +308,6 @@ require("lazy").setup({
 			})
 		end,
 	},
-
-	-- {
-	-- 	"rcarriga/nvim-dap-ui",
-	-- 	dependencies = "mfussenegger/nvim-dap",
-	-- 	config = function()
-	-- 		local dap = require("dap")
-	-- 		local dapui = require("dapui")
-	-- 		dapui.setup()
-	-- 		-- dap.listeners.after.event_initialized["dapui_config"] = function()
-	-- 		-- 	dapui.open()
-	-- 		-- end
-	-- 		dap.listeners.after.event_terminated["dapui_config"] = function()
-	-- 			dapui.close()
-	-- 		end
-	-- 		dap.listeners.after.event_exited["dapui_config"] = function()
-	-- 			dapui.close()
-	-- 		end
-	-- 	end,
-	-- },
-
-	-- {
-	-- 	"rcarriga/nvim-dap-ui",
-	-- 	dependencies = "mfussenegger/nvim-dap",
-	-- 	config = function()
-	-- 		local dap = require("dap")
-	-- 		local dapui = require("dapui")
-	--
-	-- 		dapui.setup({
-	-- 			layouts = {
-	-- 				{
-	-- 					elements = {
-	-- 						"repl",
-	-- 					},
-	-- 					size = 80,
-	-- 					position = "right",
-	-- 				},
-	-- 			},
-	-- 		})
-	--
-	-- 		local function toggle_repl()
-	-- 			dapui.toggle({ layout = 1 })
-	-- 		end
-	--
-	-- 		vim.keymap.set("n", "<leader>ur", toggle_repl, { desc = "Toggle DAP REPL" })
-	--
-	-- 		dap.listeners.after.event_terminated["dapui_config"] = function()
-	-- 			dapui.close()
-	-- 		end
-	-- 		dap.listeners.after.event_exited["dapui_config"] = function()
-	-- 			dapui.close()
-	-- 		end
-	-- 	end,
-	-- },
 
 	{
 		"rcarriga/nvim-dap-ui",
@@ -414,33 +387,6 @@ require("lazy").setup({
 	},
 
 	{
-		"voldikss/vim-floaterm",
-		lazy = false,
-	},
-
-	{
-		"tpope/vim-fugitive",
-		lazy = false,
-	},
-
-	{
-		"sindrets/diffview.nvim",
-		lazy = false,
-	},
-
-	{
-		"stevearc/oil.nvim",
-		opts = {
-			view_options = {
-				show_hidden = true,
-			},
-		},
-		-- optional dependencies
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		lazy = false,
-	},
-
-	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
 		lazy = false,
@@ -459,31 +405,6 @@ require("lazy").setup({
 			require("leap").create_default_mappings()
 		end,
 	},
-
-	-- {
-	-- 	"robitx/gp.nvim",
-	-- 	config = function()
-	-- 		require("gp").setup({
-	-- 			chat_template = "",
-	-- 			agents = {
-	-- 				-- disable chatgpt 3.5
-	-- 				{
-	-- 					name = "chatgpt3-5",
-	-- 					chat = false, -- just name would suffice
-	-- 					command = false, -- just name would suffice
-	-- 				},
-	-- 				{
-	-- 					name = "chatgpt4",
-	-- 					chat = true,
-	-- 					command = false,
-	-- 					model = { model = "gpt-4o", temperature = 0.1, top_p = 1 },
-	-- 					system_prompt = "you are assisting a seasoned programmer. your answers are concise and you will not explain them. if possible provide only code snippets.",
-	-- 				},
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- 	lazy = false,
-	-- },
 
 	{
 		"gorbit99/codewindow.nvim",
@@ -1264,23 +1185,33 @@ require("lazy").setup({
 		},
 	},
 })
---
---   note: here are my personal settings
 
 -- keybindings
 local map_keys = vim.keymap.set
 
+map_keys("n", "<leader>rr", ":UndotreeToggle<CR>")
+map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
+
+map_keys("n", "<leader>do", ":DiffviewOpen<CR>")
+map_keys("n", "<leader>dc", ":DiffviewClose<CR>")
+map_keys("n", "<leader>dh", ":DiffviewFileHistory<CR>")
+
+map_keys("n", "<leader>ft", ":FloatermToggle<CR>")
+map_keys("n", "<leader>fe", ":FloatermNew<CR>")
+map_keys("n", "<leader>fx", ":FloatermKill<CR>")
+
+map_keys("n", "-", ":Oil<CR>")
+map_keys("n", "<leader>nn", ":NvimTreeToggle<CR>")
+
+map_keys("n", "[c", ":Gitsigns prev_hunk<CR>", { noremap = true, silent = true })
+map_keys("n", "]c", ":Gitsigns next_hunk<CR>", { noremap = true, silent = true })
+
+map_keys("n", "<leader>q", ":bprevious<cr>")
+map_keys("n", "<leader>e", ":bnext<cr>")
+map_keys("n", "<leader>bd", ":bd!<cr>")
+
 map_keys("i", "kj", "<esc>")
 map_keys("i", "jk", "<esc>")
-
-map_keys("n", "<c-g><c-t>", ":gpchattoggle popup<cr>")
-map_keys("n", "<c-g><c-r>", ":gpchatnew popup<cr>")
-
-map_keys("n", "<c-q>", ":lua require('harpoon.ui').nav_prev()<cr>")
-map_keys("n", "<c-e>", ":lua require('harpoon.ui').nav_next()<cr>")
-
-map_keys("n", "<leader>rr", ":undotreetoggle<cr>")
--- map_keys("n", "<leader>tt", ":lua require('base46').toggle_transparency()<cr>")
 
 map_keys("n", "<leader>tt", function()
 	vim.g.transparency = not vim.g.transparency
@@ -1292,22 +1223,6 @@ map_keys("n", "<leader>tt", function()
 	end
 end, { desc = "toggle transparency" })
 
-map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<cr>')
-
-map_keys("n", "<leader>do", ":diffviewopen<cr>")
-map_keys("n", "<leader>dc", ":diffviewclose<cr>")
-map_keys("n", "<leader>dh", ":diffviewfilehistory<cr>")
-
-map_keys("n", "<leader>ft", ":floatermtoggle<cr>")
-map_keys("n", "<leader>fe", ":floatermnew<cr>")
-map_keys("n", "<leader>fx", ":floatermkill<cr>")
-
-map_keys("n", "<leader>q", ":bprevious<cr>")
-map_keys("n", "<leader>e", ":bnext<cr>")
-map_keys("n", "<leader>bd", ":bd!<cr>")
--- map_keys("n", "<leader>o", ":let v:oldfiles = []<cr>")
-
--- map_keys("n", "<leader>`", ":lua require'dap'.toggle_breakpoint()<cr>", { noremap = true, silent = true })
 map_keys(
 	"n",
 	"<leader>`",
@@ -1335,17 +1250,11 @@ map_keys("n", "<leader>ut", ":lua require'dapui'.toggle()<cr>", { noremap = true
 map_keys("n", "<leader>q", ":bprevious<cr>")
 map_keys("n", "<leader>e", ":bnext<cr>")
 
-map_keys("n", "-", ":oil<cr>")
-map_keys("n", "<leader>nn", ":nvimtreetoggle<cr>")
-
-map_keys("n", "[c", "<cmd>gitsigns prev_hunk<cr>", { noremap = true, silent = true })
-map_keys("n", "]c", "<cmd>gitsigns next_hunk<cr>", { noremap = true, silent = true })
-
 local harpoon = require("harpoon")
-map_keys("n", "<leader>a", function()
+map_keys("n", "<leader>ha", function()
 	harpoon:list():add()
 end)
-map_keys("n", "<leader>s", function()
+map_keys("n", "<leader>hh", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
 map_keys("n", "1", function()
