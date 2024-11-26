@@ -228,6 +228,16 @@ vim.opt.rtp:prepend(lazypath)
 -- note: here is where you install your plugins.
 require("lazy").setup({
 	{
+		"jpalardy/vim-slime",
+		lazy = false,
+		config = function()
+			vim.g.slime_target = "tmux"
+			vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
+			vim.g.slime_dont_ask_default = 1
+		end,
+	},
+
+	{
 		"nvim-neotest/nvim-nio",
 		lazy = false,
 	},
@@ -880,6 +890,10 @@ require("lazy").setup({
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- used to format lua code
+				"mypy",
+				"ruff",
+				"debugpy",
+				"pyright",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
