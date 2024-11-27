@@ -227,34 +227,37 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- note: here is where you install your plugins.
 require("lazy").setup({
+	{ "edluffy/hologram.nvim", lazy = false, auto_display = true },
 	{
 		"voldikss/vim-floaterm",
 		lazy = false,
 	},
 
+	-- {
+	-- 	"jpalardy/vim-slime",
+	-- 	lazy = false,
+	-- 	init = function()
+	-- 		vim.g.slime_target = "neovim"
+	-- 		vim.g.slime_no_mappings = true
+	-- 	end,
+	-- 	config = function()
+	-- 		vim.g.slime_input_pid = false
+	-- 		vim.api.nvim_set_keymap("n", "<C-v><C-v>", "<Plug>SlimeLineSend", { noremap = false, silent = true })
+	-- 		vim.api.nvim_set_keymap("n", "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = false, silent = true })
+	-- 	end,
+	-- },
+
 	{
 		"jpalardy/vim-slime",
 		lazy = false,
-		init = function()
-			vim.g.slime_target = "neovim"
-			vim.g.slime_no_mappings = true
-		end,
 		config = function()
-			vim.g.slime_input_pid = false
+			vim.g.slime_target = "tmux"
+			vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
+			vim.g.slime_dont_ask_default = 1
 			vim.api.nvim_set_keymap("n", "<C-v><C-v>", "<Plug>SlimeLineSend", { noremap = false, silent = true })
 			vim.api.nvim_set_keymap("n", "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = false, silent = true })
 		end,
 	},
-
-	-- {
-	-- 	"jpalardy/vim-slime",
-	-- 	lazy = false,
-	-- 	config = function()
-	-- 		vim.g.slime_target = "tmux"
-	-- 		vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
-	-- 		vim.g.slime_dont_ask_default = 1
-	-- 	end,
-	-- },
 	{
 		"nvim-neotest/nvim-nio",
 		lazy = false,
@@ -1224,10 +1227,17 @@ local map_keys = vim.keymap.set
 map_keys("n", "<leader>rr", ":UndotreeToggle<CR>")
 map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
 
+-- map_keys(
+-- 	"n",
+-- 	"<leader>ip",
+-- 	[[<cmd>execute 'vsplit | terminal ipython -i '.expand('%:p') | wincmd p<CR>]],
+-- 	{ noremap = true, silent = true }
+-- )
+
 map_keys(
 	"n",
 	"<leader>ip",
-	[[<cmd>execute 'vsplit | terminal ipython -i '.expand('%:p') | wincmd p<CR>]],
+	[[<cmd>execute 'split | terminal tmux split-window -h ipython -i '.expand('%:p').' && tmux select-pane -L' | close<CR>]],
 	{ noremap = true, silent = true }
 )
 
@@ -1247,11 +1257,11 @@ _G.create_float_window = function()
 	local width = vim.api.nvim_get_option("columns")
 	local height = vim.api.nvim_get_option("lines")
 
-	local win_height = math.ceil(height * 0.8 - 4)
-	local win_width = math.ceil(width * 0.4)
+	local win_height = math.ceil(height * 0.7 - 4)
+	local win_width = math.ceil(width * 0.8 - 4)
 
 	local row = math.ceil((height - win_height) / 2 - 1)
-	local col = 2 -- Set a small margin from the left edge
+	local col = math.ceil((width - win_width) / 2)
 
 	local opts = {
 		relative = "editor",
@@ -1265,7 +1275,6 @@ _G.create_float_window = function()
 
 	local win = vim.api.nvim_open_win(buf, true, opts)
 
-	-- Optional: Set window-local options
 	vim.api.nvim_win_set_option(win, "winblend", 0)
 	vim.api.nvim_win_set_option(win, "winhl", "Normal:Normal")
 end
