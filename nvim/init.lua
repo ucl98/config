@@ -228,19 +228,24 @@ vim.opt.rtp:prepend(lazypath)
 -- note: here is where you install your plugins.
 require("lazy").setup({
 	{
-		"jpalardy/vim-slime",
-		lazy = false,
-		config = function()
-			vim.g.slime_target = "tmux"
-			vim.g.slime_default_config = { bufnr = nil }
-			vim.g.slime_dont_ask_default = 1
-			vim.g.slime_python_ipython = 1
-		end,
-	},
-	{
 		"voldikss/vim-floaterm",
 		lazy = false,
 	},
+
+	{
+		"jpalardy/vim-slime",
+		lazy = false,
+		init = function()
+			vim.g.slime_target = "neovim"
+			vim.g.slime_no_mappings = true
+		end,
+		config = function()
+			vim.g.slime_input_pid = false
+			vim.api.nvim_set_keymap("n", "<C-v><C-v>", "<Plug>SlimeLineSend", { noremap = false, silent = true })
+			vim.api.nvim_set_keymap("n", "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = false, silent = true })
+		end,
+	},
+
 	-- {
 	-- 	"jpalardy/vim-slime",
 	-- 	lazy = false,
@@ -250,7 +255,6 @@ require("lazy").setup({
 	-- 		vim.g.slime_dont_ask_default = 1
 	-- 	end,
 	-- },
-
 	{
 		"nvim-neotest/nvim-nio",
 		lazy = false,
@@ -1223,7 +1227,7 @@ map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
 map_keys(
 	"n",
 	"<leader>ip",
-	[[<cmd>execute 'FloatermNew --wintype=vsplit --width=0.5 --position=right --cwd='.expand('%:p:h').' ipython -i '.expand('%:p') | wincmd p | stopinsert<CR>]],
+	[[<cmd>execute 'vsplit | terminal ipython -i '.expand('%:p') | wincmd p<CR>]],
 	{ noremap = true, silent = true }
 )
 
