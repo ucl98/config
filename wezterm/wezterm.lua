@@ -3,6 +3,7 @@ local act = wezterm.action
 local mux = wezterm.mux
 
 return {
+	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	skip_close_confirmation_for_processes_named = {
 		-- "tmux",
 		"bash",
