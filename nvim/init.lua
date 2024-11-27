@@ -232,10 +232,24 @@ require("lazy").setup({
 		lazy = false,
 		config = function()
 			vim.g.slime_target = "tmux"
-			vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
+			vim.g.slime_default_config = { bufnr = nil }
 			vim.g.slime_dont_ask_default = 1
+			vim.g.slime_python_ipython = 1
 		end,
 	},
+	{
+		"voldikss/vim-floaterm",
+		lazy = false,
+	},
+	-- {
+	-- 	"jpalardy/vim-slime",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		vim.g.slime_target = "tmux"
+	-- 		vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
+	-- 		vim.g.slime_dont_ask_default = 1
+	-- 	end,
+	-- },
 
 	{
 		"nvim-neotest/nvim-nio",
@@ -1205,6 +1219,13 @@ local map_keys = vim.keymap.set
 
 map_keys("n", "<leader>rr", ":UndotreeToggle<CR>")
 map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
+
+map_keys(
+	"n",
+	"<leader>ip",
+	[[<cmd>execute 'FloatermNew --wintype=vsplit --width=0.5 --position=right --cwd='.expand('%:p:h').' ipython -i '.expand('%:p') | wincmd p | stopinsert<CR>]],
+	{ noremap = true, silent = true }
+)
 
 map_keys("n", "<leader>do", ":DiffviewOpen<CR>")
 map_keys("n", "<leader>dc", ":DiffviewClose<CR>")
