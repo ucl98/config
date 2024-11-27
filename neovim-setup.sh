@@ -45,6 +45,7 @@ pip3 install --user matplotlib-backend-wezterm
 pip3 install --user neovim
 
 STARTUP_SCRIPT="/root/.ipython/profile_default/startup/01-matplotlib-wezterm.py"
+touch $STARTUP_SCRIPT
 
 cat << EOF > "$STARTUP_SCRIPT"
 import matplotlib
