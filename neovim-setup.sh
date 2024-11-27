@@ -31,6 +31,16 @@ echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez
 apt update
 apt install -y wezterm
 
+# Install lazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": *"v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+mkdir -p ~/bin
+mv lazygit ~/bin/
+rm lazygit.tar.gz
+echo 'export PATH=$PATH:~/bin' >> ~/.bashrc
+
+# Setup terminal plots
 pip3 install --user matplotlib-backend-wezterm
 pip3 install --user neovim
 
@@ -41,4 +51,6 @@ import matplotlib
 matplotlib.use('module://matplotlib-backend-wezterm')
 import matplotlib.pyplot as plt
 EOF
+
+source ~/.bashrc
 
