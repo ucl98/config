@@ -227,7 +227,6 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- note: here is where you install your plugins.
 require("lazy").setup({
-	{ "edluffy/hologram.nvim", lazy = false, auto_display = true },
 	{
 		"voldikss/vim-floaterm",
 		lazy = false,
@@ -258,6 +257,7 @@ require("lazy").setup({
 			vim.api.nvim_set_keymap("n", "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = false, silent = true })
 		end,
 	},
+
 	{
 		"nvim-neotest/nvim-nio",
 		lazy = false,
@@ -651,12 +651,11 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[s]earch [k]eymaps" })
 			vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[s]earch [f]iles" })
 			-- vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[s]earch [s]elect telescope" })
-			vim.keymap.set(
-				"n",
-				"<leader>ss",
-				builtin.lsp_document_symbols,
-				{ desc = "[s]earch [s]elect document symbols" }
-			)
+			vim.keymap.set("n", "<leader>ss", function()
+				require("telescope.builtin").lsp_document_symbols({
+					symbols = { "class", "function", "method" },
+				})
+			end, { desc = "[s]earch [s]elect document symbols" })
 			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[s]earch current [w]ord" })
 			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[s]earch by [g]rep" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[s]earch [d]iagnostics" })
