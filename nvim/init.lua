@@ -1238,6 +1238,37 @@ map_keys("n", "<leader>dh", ":DiffviewFileHistory<CR>")
 map_keys("n", "<leader>ft", ":FloatermToggle<CR>")
 map_keys("n", "<leader>fe", ":FloatermNew<CR>")
 map_keys("n", "<leader>fx", ":FloatermKill<CR>")
+map_keys("n", "<leader>fp", ":lua create_float_window()<CR>", { noremap = true, silent = true })
+
+_G.create_float_window = function()
+	local buf = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_option(buf, "filetype", "python")
+
+	local width = vim.api.nvim_get_option("columns")
+	local height = vim.api.nvim_get_option("lines")
+
+	local win_height = math.ceil(height * 0.8 - 4)
+	local win_width = math.ceil(width * 0.4)
+
+	local row = math.ceil((height - win_height) / 2 - 1)
+	local col = 2 -- Set a small margin from the left edge
+
+	local opts = {
+		relative = "editor",
+		width = win_width,
+		height = win_height,
+		row = row,
+		col = col,
+		style = "minimal",
+		border = "rounded",
+	}
+
+	local win = vim.api.nvim_open_win(buf, true, opts)
+
+	-- Optional: Set window-local options
+	vim.api.nvim_win_set_option(win, "winblend", 0)
+	vim.api.nvim_win_set_option(win, "winhl", "Normal:Normal")
+end
 
 map_keys("n", "-", ":Oil<CR>")
 map_keys("n", "<leader>nn", ":NvimTreeToggle<CR>")
