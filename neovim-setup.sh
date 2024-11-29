@@ -1,8 +1,21 @@
 #!/bin/bash
 
+apt-get update && apt-get upgrade -y
+add-apt-repository ppa:deadsnakes/ppa -y
+apt-get update
+apt-get install -y python3.10 python3.10-venv python3.10-dev python3.10-distutils
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3.10 get-pip.py
+rm get-pip.py
+
+# Setup terminal plots
+pip3.10 install --user matplotlib-backend-wezterm
+pip3.10 install --user pytest
+pip3.10 install --user debugpy
+pip3.10 install --user neovim
+
 # Update package lists
 apt-get update && apt-get install -y \
-    python3-pip \
     build-essential \
     curl \
     git \
@@ -69,9 +82,6 @@ mv lazygit ~/bin/
 rm lazygit.tar.gz
 echo 'export PATH=$PATH:~/bin' >> ~/.bashrc
 
-# Setup terminal plots
-pip3 install --user matplotlib-backend-wezterm
-pip3 install --user neovim
 
 STARTUP_SCRIPT="/root/.ipython/profile_default/startup/01-matplotlib-wezterm.py"
 touch $STARTUP_SCRIPT
