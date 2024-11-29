@@ -1249,33 +1249,66 @@ map_keys("n", "<leader>fe", ":FloatermNew<CR>")
 map_keys("n", "<leader>fx", ":FloatermKill<CR>")
 map_keys("n", "<leader>fp", ":lua create_float_window()<CR>", { noremap = true, silent = true })
 
+_G.float_buf = nil
+_G.float_win = nil
+_G.float_win_visible = false
+
+-- Function to create or toggle the float window
 _G.create_float_window = function()
-	local buf = vim.api.nvim_create_buf(false, true)
-	vim.api.nvim_buf_set_option(buf, "filetype", "python")
+	if _G.float_win_visible then
+		-- Check if the window still exists
+		local win_valid = vim.api.nvim_win_is_valid(_G.float_win)
+		if win_valid then
+			-- Hide the window if it's visible and valid
+			vim.api.nvim_win_close(_G.float_win, true)
+			_G.float_win_visible = false
+		else
+			-- Window no longer exists, reset the state
+			_G.float_win_visible = false
+		end
+	else
+		-- Create or show the window if it's not visible
+		if _G.float_buf == nil or not vim.api.nvim_buf_is_valid(_G.float_buf) then
+			_G.float_buf = vim.api.nvim_create_buf(false, true)
+			vim.api.nvim_buf_set_option(_G.float_buf, "filetype", "python")
+		end
 
-	local width = vim.api.nvim_get_option("columns")
-	local height = vim.api.nvim_get_option("lines")
+		local width = vim.o.columns
+		local height = vim.o.lines
 
-	local win_height = math.ceil(height * 0.7 - 4)
-	local win_width = math.ceil(width * 0.8 - 4)
+		local win_height = math.ceil(height * 0.7 - 4)
+		local win_width = math.ceil(width * 0.8 - 4)
 
-	local row = math.ceil((height - win_height) / 2 - 1)
-	local col = math.ceil((width - win_width) / 2)
+		local row = math.ceil((height - win_height) / 2 - 1)
+		local col = math.ceil((width - win_width) / 2)
 
-	local opts = {
-		relative = "editor",
-		width = win_width,
-		height = win_height,
-		row = row,
-		col = col,
-		style = "minimal",
-		border = "rounded",
-	}
+		local opts = {
+			relative = "editor",
+			width = win_width,
+			height = win_height,
+			row = row,
+			col = col,
+			style = "minimal",
+			border = "rounded",
+		}
 
-	local win = vim.api.nvim_open_win(buf, true, opts)
+		_G.float_win = vim.api.nvim_open_win(_G.float_buf, true, opts)
 
-	vim.api.nvim_win_set_option(win, "winblend", 0)
-	vim.api.nvim_win_set_option(win, "winhl", "Normal:Normal")
+		vim.wo[_G.float_win].winblend = 0
+		vim.wo[_G.float_win].winhl = "Normal:Normal"
+
+		_G.float_win_visible = true
+
+		-- Set up an autocmd to update the state when the window is closed
+		vim.api.nvim_create_autocmd({ "WinClosed" }, {
+			callback = function(ev)
+				if tonumber(ev.match) == _G.float_win then
+					_G.float_win_visible = false
+					_G.float_win = nil
+				end
+			end,
+		})
+	end
 end
 
 map_keys("n", "-", ":Oil<CR>")
