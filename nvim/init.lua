@@ -1229,14 +1229,14 @@ map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
 -- map_keys(
 -- 	"n",
 -- 	"<leader>ip",
--- 	[[<cmd>execute 'vsplit | terminal ipython -i '.expand('%:p') | wincmd p<CR>]],
+-- 	[[<cmd>execute 'vsplit | terminal python'.expand('%:p') | wincmd p<CR>]],
 -- 	{ noremap = true, silent = true }
 -- )
 
 map_keys(
 	"n",
 	"<leader>ip",
-	[[<cmd>execute 'split | terminal tmux split-window -h ipython -i '.expand('%:p').' && tmux select-pane -L' | close<CR>]],
+	[[<cmd>execute 'split | terminal tmux split-window -h python'.expand('%:p').' && tmux select-pane -L' | close<CR>]],
 	{ noremap = true, silent = true }
 )
 
