@@ -404,7 +404,7 @@ require("lazy").setup({
 			"rcarriga/nvim-dap-ui",
 		},
 		config = function(_, opts)
-			local path = "/usr/bin/python3.10" -- use the global python interpreter
+			local path = "/usr/bin/python3" -- use the global python interpreter
 			require("dap-python").setup(path)
 			local dap_ok, dap = pcall(require, "dap")
 			if dap_ok then

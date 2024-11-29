@@ -1,19 +1,5 @@
 #!/bin/bash
-
-apt-get update && apt-get upgrade -y
-add-apt-repository ppa:deadsnakes/ppa -y
-apt-get update
-apt-get install -y python3.10 python3.10-venv python3.10-dev python3.10-distutils
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python3.10 get-pip.py
-rm get-pip.py
-
-# Setup terminal plots
-pip3.10 install --user matplotlib-backend-wezterm
-pip3.10 install --user pytest
-pip3.10 install --user debugpy
-pip3.10 install --user neovim
-
+#
 # Update package lists
 apt-get update && apt-get install -y \
     build-essential \
@@ -41,6 +27,12 @@ apt-get install -y nodejs
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
+
+pip3 install --user matplotlib-backend-wezterm
+pip3 install --user pytest
+pip3 install --user debugpy
+pip3 install --user neovim
+
 
 # Install neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
