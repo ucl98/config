@@ -51,7 +51,7 @@ cp -r /tmp/config/tmux /root/.config/tmux
 rm -rf /tmp/config
 
 # Add a note for shorcuts and reference the folder for nvim
-curl https://raw.githubusercontent.com/ucl98/config/refs/heads/main/notes/shorcuts.md > /workspace/notes/shortcuts.md
+# curl https://raw.githubusercontent.com/ucl98/config/refs/heads/main/notes/shorcuts.md > /workspace/notes/shortcuts.md
 echo TERM=xterm-256color >> ~/.bashrc
 
 # Install wezterm
