@@ -1,5 +1,34 @@
 #!/bin/bash
 
+# Update package lists
+apt-get update && apt-get install -y \
+    python3-pip \
+    build-essential \
+    curl \
+    git \
+    vim \
+    zlib1g-dev \
+    libopenmpi-dev \
+    ffmpeg \
+    software-properties-common \
+    lsb-release \
+    sed \
+    tmux \
+    python3-opengl \
+    unzip \
+    wget \
+    ripgrep \
+    clangd \
+    luarocks \
+    python3-venv
+
+# Set up NodeSource repository and install Node.js
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt-get install -y nodejs
+
+# Clean up
+rm -rf /var/lib/apt/lists/*
+
 # Install neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 rm -rf /opt/nvim
