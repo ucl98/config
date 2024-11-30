@@ -55,6 +55,16 @@ run = 'layout floating'
 if.app-name-regex-substring = 'finder'
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'Wezterm'
+run = 'move-node-to-workspace 2 --focus-follows-window'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Jan'
+run = ['layout floating', 'move-node-to-workspace 2']
+
+# alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
+
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
@@ -160,11 +170,11 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
-alt-t = 'exec-and-forget open -a /Applications/WezTerm.app'
+cmd-j = 'exec-and-forget open -a /Applications/Jan.app'
+alt-e = 'exec-and-forget open -a /Applications/Element.app'
 alt-w = 'exec-and-forget open -a /Applications/WezTerm.app'
 alt-f = 'exec-and-forget open -a /Applications/Firefox.app'
 alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
-alt-m = 'exec-and-forget open -a /Applications/Element.app'
 alt-g = 'exec-and-forget open -a "/Applications/Google Chrome.app"'
 alt-v = 'exec-and-forget open -a "/Applications/Visual Studio Code.app"'
 
@@ -177,5 +187,5 @@ r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layouhttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layoutsssssst
 backspace = ['close-all-windows-but-current', 'mode main']
 
-[mode.apps.binding]
-alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
+# [mode.apps.binding]
+# alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
