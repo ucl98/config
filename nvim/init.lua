@@ -1347,6 +1347,20 @@ map_keys(
 	{ noremap = true, silent = true }
 )
 
+-- Obsidian integration
+function OpenObsidianSection()
+	local file_path = vim.api.nvim_buf_get_name(0)
+	local line_number = vim.api.nvim_win_get_cursor(0)[1]
+	local vault_name = "obsidian"
+	local relative_path = file_path:match("^.+/obsidian/(.+)$")
+	local encoded_path = relative_path:gsub("/", "%%2F")
+	local command = string.format("obsidian://open?vault=%s&file=%s&line=%d", vault_name, encoded_path, line_number)
+	vim.fn.jobstart({ "open", "-g", command })
+end
+
+-- Mappings
+vim.keymap.set("n", "<leader>os", OpenObsidianSection, { desc = "Open in Obsidian" })
+
 -- map_keys("n", "=", ":bd!<cr>", { noremap = true, silent = true })
 map_keys("n", "<leader>=", ":lua require'dapui'.eval(nil, {enter = true})<cr>", { noremap = true, silent = true })
 map_keys("n", "<leader>-", ":lua require'dap'.run_to_cursor()<cr>", { noremap = true, silent = true })

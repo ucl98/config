@@ -175,6 +175,7 @@ alt-e = 'exec-and-forget open -a /Applications/Element.app'
 alt-w = 'exec-and-forget open -a /Applications/WezTerm.app'
 alt-f = 'exec-and-forget open -a /Applications/Firefox.app'
 alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
+alt-t = 'exec-and-forget open -a /Applications/Typora.app'
 alt-g = 'exec-and-forget open -a "/Applications/Google Chrome.app"'
 alt-v = 'exec-and-forget open -a "/Applications/Visual Studio Code.app"'
 
