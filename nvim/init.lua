@@ -252,9 +252,10 @@ require("lazy").setup({
 		config = function()
 			vim.g.slime_target = "tmux"
 			vim.g.slime_default_config = { socket_name = "default", target_pane = "{last}" }
-			vim.g.slime_dont_ask_default = 1
+			vim.g.slime_bracketed_paste = 1
 			vim.api.nvim_set_keymap("n", "<C-v><C-v>", "<Plug>SlimeLineSend", { noremap = false, silent = true })
 			vim.api.nvim_set_keymap("n", "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = false, silent = true })
+			vim.api.nvim_set_keymap("n", "<C-c><C-v>", "<Plug>SlimeRegionSend", { noremap = false, silent = true })
 		end,
 	},
 
@@ -1354,7 +1355,7 @@ function OpenObsidianSection()
 	local vault_name = "obsidian"
 	local relative_path = file_path:match("^.+/obsidian/(.+)$")
 	local encoded_path = relative_path:gsub("/", "%%2F")
-	local command = string.format("obsidian://open?vault=%s&file=%s&line=%d", vault_name, encoded_path, line_number)
+	local command = string.format("obsidian://open?vault=%s&file=%s", vault_name, encoded_path, line_number)
 	vim.fn.jobstart({ "open", "-g", command })
 end
 
