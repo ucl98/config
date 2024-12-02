@@ -256,7 +256,6 @@ require("lazy").setup({
 			vim.g.slime_dont_ask_default = 1
 			vim.api.nvim_set_keymap("n", "<C-v><C-v>", "<Plug>SlimeLineSend", { noremap = false, silent = true })
 			vim.api.nvim_set_keymap("n", "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = false, silent = true })
-			vim.api.nvim_set_keymap("n", "<C-c><C-v>", "<Plug>SlimeRegionSend", { noremap = false, silent = true })
 		end,
 	},
 
