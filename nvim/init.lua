@@ -232,20 +232,6 @@ require("lazy").setup({
 		lazy = false,
 	},
 
-	-- {
-	-- 	"jpalardy/vim-slime",
-	-- 	lazy = false,
-	-- 	init = function()
-	-- 		vim.g.slime_target = "neovim"
-	-- 		vim.g.slime_no_mappings = true
-	-- 	end,
-	-- 	config = function()
-	-- 		vim.g.slime_input_pid = false
-	-- 		vim.api.nvim_set_keymap("n", "<C-v><C-v>", "<Plug>SlimeLineSend", { noremap = false, silent = true })
-	-- 		vim.api.nvim_set_keymap("n", "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = false, silent = true })
-	-- 	end,
-	-- },
-
 	{
 		"jpalardy/vim-slime",
 		lazy = false,
@@ -256,6 +242,9 @@ require("lazy").setup({
 			vim.g.slime_dont_ask_default = 1
 			vim.api.nvim_set_keymap("n", "<C-v><C-v>", "<Plug>SlimeLineSend", { noremap = false, silent = true })
 			vim.api.nvim_set_keymap("n", "<C-c><C-c>", "<Plug>SlimeParagraphSend", { noremap = false, silent = true })
+			vim.api.nvim_set_keymap("n", "<C-c><C-v>", "<Plug>SlimeSendCell", { noremap = false, silent = true })
+
+			vim.g.slime_cell_delimiter = "```"
 		end,
 	},
 
@@ -1383,16 +1372,16 @@ end)
 map_keys("n", "<leader>hh", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
-map_keys("n", "1", function()
+map_keys("n", "<C-1>", function()
 	harpoon:list():select(1)
 end)
-map_keys("n", "2", function()
+map_keys("n", "<C-2>", function()
 	harpoon:list():select(2)
 end)
-map_keys("n", "3", function()
+map_keys("n", "<C-3>", function()
 	harpoon:list():select(3)
 end)
-map_keys("n", "4", function()
+map_keys("n", "<C-4>", function()
 	harpoon:list():select(4)
 end)
 
