@@ -427,15 +427,15 @@ require("lazy").setup({
 		end,
 	},
 
-	{
-		"gorbit99/codewindow.nvim",
-		config = function()
-			local codewindow = require("codewindow")
-			codewindow.setup()
-			codewindow.apply_default_keybinds()
-		end,
-		lazy = false,
-	},
+	-- {
+	-- 	"gorbit99/codewindow.nvim",
+	-- 	config = function()
+	-- 		local codewindow = require("codewindow")
+	-- 		codewindow.setup()
+	-- 		codewindow.apply_default_keybinds()
+	-- 	end,
+	-- 	lazy = false,
+	-- },
 
 	{
 		"mbbill/undotree",
@@ -1214,14 +1214,7 @@ require("lazy").setup({
 local map_keys = vim.keymap.set
 
 map_keys("n", "<leader>rr", ":UndotreeToggle<CR>")
-map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
-
--- map_keys(
--- 	"n",
--- 	"<leader>ip",
--- 	[[<cmd>execute 'vsplit | terminal python'.expand('%:p') | wincmd p<CR>]],
--- 	{ noremap = true, silent = true }
--- )
+-- map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
 
 map_keys("n", "<leader>do", ":DiffviewOpen<CR>")
 map_keys("n", "<leader>dc", ":DiffviewClose<CR>")
