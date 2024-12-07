@@ -673,7 +673,7 @@ require("lazy").setup({
 
 			vim.keymap.set("n", "<leader>sn", function()
 				builtin.live_grep({
-					cwd = "/workspace/notes",
+					cwd = "~/obsidian/notes",
 					file_ignore_patterns = { " %- index.md$", "^index%.md$" },
 					hidden = false,
 					no_ignore = false,
@@ -1222,13 +1222,6 @@ map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
 -- 	[[<cmd>execute 'vsplit | terminal python'.expand('%:p') | wincmd p<CR>]],
 -- 	{ noremap = true, silent = true }
 -- )
-
-map_keys(
-	"n",
-	"<leader>ip",
-	[[<cmd>execute 'split | terminal tmux split-window -h python'.expand('%:p').' && tmux select-pane -L' | close<CR>]],
-	{ noremap = true, silent = true }
-)
 
 map_keys("n", "<leader>do", ":DiffviewOpen<CR>")
 map_keys("n", "<leader>dc", ":DiffviewClose<CR>")
