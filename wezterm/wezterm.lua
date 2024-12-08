@@ -24,6 +24,35 @@ return {
 	},
 	initial_cols = 160,
 	initial_rows = 40,
+	disable_default_key_bindings = true,
+	use_ime = false,
+	keys = {
+		{
+			key = "1",
+			mods = "CTRL",
+			action = wezterm.action.SendKey({ key = "1", mods = "CTRL" }),
+		},
+		{
+			key = "2",
+			mods = "CTRL",
+			action = wezterm.action.SendKey({ key = "2", mods = "CTRL" }),
+		},
+		{
+			key = "3",
+			mods = "CTRL",
+			action = wezterm.action.SendKey({ key = "3", mods = "CTRL" }),
+		},
+		{
+			key = "4",
+			mods = "CTRL",
+			action = wezterm.action.SendKey({ key = "4", mods = "CTRL" }),
+		},
+		{
+			key = "5",
+			mods = "CTRL",
+			action = wezterm.action.SendKey({ key = "5", mods = "CTRL" }),
+		},
+	},
 	mouse_bindings = {
 		{
 			event = { Up = { streak = 1, button = "Left" } },

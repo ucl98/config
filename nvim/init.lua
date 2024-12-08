@@ -227,6 +227,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- note: here is where you install your plugins.
 require("lazy").setup({
+
 	{
 		"voldikss/vim-floaterm",
 		lazy = false,
@@ -405,6 +406,34 @@ require("lazy").setup({
 				}
 			end
 		end,
+	},
+
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*",
+		lazy = true,
+		ft = "markdown",
+		-- event = {
+		-- 	"BufReadPre " .. vim.fn.expand("~") .. "/obsidian/notes/*.md",
+		-- 	"BufNewFile " .. vim.fn.expand("~") .. "/obsidian/notes/*.md",
+		-- },
+		cmd = {
+			"ObsidianTags",
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			workspaces = {
+				{
+					name = "notes",
+					path = "~/obsidian/notes",
+				},
+			},
+			ui = {
+				enable = false,
+			},
+		},
 	},
 
 	{
@@ -1377,6 +1406,8 @@ end)
 map_keys("n", "<C-q>", function()
 	harpoon:list():next()
 end)
+
+vim.api.nvim_set_keymap("n", "<leader>st", ":ObsidianTags<CR>", { noremap = true, silent = true })
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
