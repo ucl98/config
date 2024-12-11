@@ -429,6 +429,10 @@ require("lazy").setup({
 					name = "notes",
 					path = "~/obsidian/notes",
 				},
+				{
+					name = "sketches",
+					path = "~/obsidian/sketches",
+				},
 			},
 			ui = {
 				enable = false,

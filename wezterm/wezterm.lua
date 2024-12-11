@@ -24,7 +24,7 @@ return {
 	},
 	initial_cols = 160,
 	initial_rows = 40,
-	disable_default_key_bindings = true,
+	-- disable_default_key_bindings = true,
 	use_ime = false,
 	keys = {
 		{
