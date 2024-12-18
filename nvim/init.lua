@@ -255,17 +255,15 @@ require("lazy").setup({
 	},
 
 	{
-		"voldikss/vim-floaterm",
+		"lervag/vimtex",
 		lazy = false,
+		init = function()
+			vim.g.vimtex_view_method = "zathura"
+		end,
 	},
 
 	{
 		"tpope/vim-fugitive",
-		lazy = false,
-	},
-
-	{
-		"sindrets/diffview.nvim",
 		lazy = false,
 	},
 
@@ -287,7 +285,6 @@ require("lazy").setup({
 			local null_ls = require("null-ls")
 			return {
 				sources = {
-					-- null_ls.builtins.formatting.black,
 					null_ls.builtins.diagnostics.mypy,
 					null_ls.builtins.diagnostics.ruff,
 				},
@@ -295,14 +292,6 @@ require("lazy").setup({
 		end,
 	},
 
-	{
-		"Weissle/persistent-breakpoints.nvim",
-		config = function()
-			require("persistent-breakpoints").setup({
-				load_breakpoints_event = { "BufReadPost" },
-			})
-		end,
-	},
 	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
@@ -451,24 +440,6 @@ require("lazy").setup({
 			require("nvim-tree").setup({})
 		end,
 	},
-
-	{
-		"ggandor/leap.nvim",
-		lazy = false,
-		config = function()
-			require("leap").create_default_mappings()
-		end,
-	},
-
-	-- {
-	-- 	"gorbit99/codewindow.nvim",
-	-- 	config = function()
-	-- 		local codewindow = require("codewindow")
-	-- 		codewindow.setup()
-	-- 		codewindow.apply_default_keybinds()
-	-- 	end,
-	-- 	lazy = false,
-	-- },
 
 	{
 		"mbbill/undotree",
@@ -935,6 +906,7 @@ require("lazy").setup({
 				"stylua", -- used to format lua code
 				"mypy",
 				"ruff",
+				-- "black",
 				"debugpy",
 				"pyright",
 			})
@@ -982,12 +954,12 @@ require("lazy").setup({
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				-- conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
-				--
-				-- you can use a sub-list to tell conform to run *until* a formatter
-				-- is found.
-				-- javascript = { { "prettierd", "prettier" } },
+				python = { "ruff_format" },
+			},
+			formatters = {
+				ruff_format = {
+					args = { "--line-length=2000" },
+				},
 			},
 		},
 	},
@@ -1248,10 +1220,6 @@ local map_keys = vim.keymap.set
 
 map_keys("n", "<leader>rr", ":UndotreeToggle<CR>")
 -- map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
-
-map_keys("n", "<leader>do", ":DiffviewOpen<CR>")
-map_keys("n", "<leader>dc", ":DiffviewClose<CR>")
-map_keys("n", "<leader>dh", ":DiffviewFileHistory<CR>")
 
 map_keys("n", "<leader>ft", ":FloatermToggle<CR>")
 map_keys("n", "<leader>fe", ":FloatermNew<CR>")
