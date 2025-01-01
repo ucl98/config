@@ -56,7 +56,7 @@ run = 'layout floating'
 # run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Wezterm'
+if.app-name-regex-substring = 'Ghossty'
 run = 'move-node-to-workspace 2 --focus-follows-window'
 
 [[on-window-detected]]
@@ -171,13 +171,13 @@ alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
 cmd-j = 'exec-and-forget open -a /Applications/Jan.app'
-alt-e = 'exec-and-forget open -a /Applications/Element.app'
-alt-w = 'exec-and-forget open -a /Applications/WezTerm.app'
-alt-f = 'exec-and-forget open -a /Applications/Firefox.app'
-alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
-alt-t = 'exec-and-forget open -a /Applications/Typora.app'
-alt-g = 'exec-and-forget open -a "/Applications/Google Chrome.app"'
-alt-v = 'exec-and-forget open -a "/Applications/Visual Studio Code.app"'
+# alt-e = 'exec-and-forget open -a /Applications/Element.app'
+# alt-w = 'exec-and-forget open -a /Applications/Ghostty.app'
+# alt-f = 'exec-and-forget open -a /Applications/Firefox.app'
+# alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
+# alt-t = 'exec-and-forget open -a /Applications/Typora.app'
+# alt-g = 'exec-and-forget open -a "/Applications/Google Chrome.app"'
+# alt-v = 'exec-and-forget open -a "/Applications/Visual Studio Code.app"'
 
 
 # 'service' binding mode declaration.

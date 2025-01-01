@@ -259,6 +259,7 @@ require("lazy").setup({
 		lazy = false,
 		init = function()
 			vim.g.vimtex_view_method = "zathura"
+			vim.g.vimtex_quickfix_mode = 0
 		end,
 	},
 
@@ -1381,6 +1382,17 @@ end)
 
 vim.api.nvim_set_keymap("n", "<leader>st", ":ObsidianTags<CR>", { noremap = true, silent = true })
 
+vim.g.clipboard = {
+	name = "OSC 52",
+	copy = {
+		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+	},
+	paste = {
+		["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+		["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+	},
+}
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
