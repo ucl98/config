@@ -1312,19 +1312,6 @@ map_keys("n", "<leader>tt", function()
 	end
 end, { desc = "toggle transparency" })
 
-map_keys(
-	"n",
-	"<leader>`",
-	":lua require'persistent-breakpoints.api'.toggle_breakpoint()<cr>",
-	{ noremap = true, silent = true }
-)
-map_keys(
-	"n",
-	"<leader><Del>",
-	":lua require'persistent-breakpoints.api'.clear_all_breakpoints()<cr>",
-	{ noremap = true, silent = true }
-)
-
 -- Obsidian integration
 function OpenObsidianSection()
 	local file_path = vim.api.nvim_buf_get_name(0)
@@ -1347,6 +1334,7 @@ map_keys("n", "<leader>2", ":lua require'dap'.step_over()<cr>", { noremap = true
 map_keys("n", "<leader>3", ":lua require'dap'.step_into()<cr>", { noremap = true, silent = true })
 map_keys("n", "<leader>5", ":lua require'dap'.restart()<cr>", { noremap = true, silent = true })
 map_keys("n", "<leader>6", ":lua require'dap'.terminate()<cr>", { noremap = true, silent = true })
+map_keys("n", "<leader>`", ":lua require'dap'.terminate()<cr>", { noremap = true, silent = true })
 
 map_keys("n", "<leader>ut", ":lua require'dapui'.toggle()<cr>", { noremap = true, silent = true })
 
