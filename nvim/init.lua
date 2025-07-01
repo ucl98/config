@@ -685,24 +685,14 @@ require("lazy").setup({
 			end, { desc = "[s]earch [/] in open files" })
 
 			vim.keymap.set("n", "<leader>sn", function()
-				builtin.live_grep({
+				builtin.find_files({
 					cwd = "~/obsidian/notes",
 					file_ignore_patterns = { " %- index.md$", "^index%.md$" },
 					hidden = false,
 					no_ignore = false,
-					case_mode = "ignore_case",
-					vimgrep_arguments = {
-						"rg",
-						"--color=never",
-						"--no-heading",
-						"--with-filename",
-						"--line-number",
-						"--column",
-						"--ignore-case",
-						"--max-count=1",
-					},
+					search_file = "*.md",
 				})
-			end, { desc = "[s]earch [n]eovim files" })
+			end, { desc = "[s]earch [n]otes files" })
 
 			-- Search local notes - optimized for obsidian notes only
 			vim.keymap.set("n", "<leader>sl", function()
@@ -1147,8 +1137,8 @@ require("lazy").setup({
 			--  you could remove this setup call if you don't like it,
 			--  and try some other statusline plugin
 			local statusline = require("mini.statusline")
-			-- set use_icons to true if you have a nerd font
-			statusline.setup({ use_icons = vim.g.have_nerd_font })
+			-- disable icons to remove ghost icon
+			statusline.setup({ use_icons = false })
 
 			-- you can configure sections in the statusline by overriding their
 			-- default behavior. for example, here we set the section for
@@ -1156,6 +1146,14 @@ require("lazy").setup({
 			---@diagnostic disable-next-line: duplicate-set-field
 			statusline.section_location = function()
 				return "%2l:%-2v"
+			end
+
+			-- show folder name instead of file icon
+			---@diagnostic disable-next-line: duplicate-set-field
+			statusline.section_filename = function()
+				local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+				local filename = "%t%m%r"
+				return string.format("[%s] %s", cwd, filename)
 			end
 
 			-- ... and there is more!
