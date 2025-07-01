@@ -20,7 +20,8 @@ window-theme = auto
 # window-width = 120
 # window-height = 40
 
-# Shell integration for proper cleanup
+# Shell integration for proper cleanup and session management
 shell-integration = zsh
 confirm-close-surface = false
+quit-after-last-window-closed = true
 
