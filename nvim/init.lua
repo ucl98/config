@@ -1276,8 +1276,8 @@ _G.create_float_window = function()
 		local width = vim.o.columns
 		local height = vim.o.lines
 
-		local win_height = math.ceil(height * 0.7 - 4)
-		local win_width = math.ceil(width * 0.8 - 4)
+		local win_height = math.ceil(height * 0.9 - 4)
+		local win_width = math.ceil(width * 0.9 - 4)
 
 		local row = math.ceil((height - win_height) / 2 - 1)
 		local col = math.ceil((width - win_width) / 2)
