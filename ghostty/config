@@ -9,3 +9,18 @@ font-feature = -calt
 clipboard-read=allow
 clipboard-write=allow
 
+# Window management settings
+window-save-state = always
+window-step-resize = true
+
+# This ensures Ghostty remembers window size and position
+window-theme = auto
+
+# Optional: Set specific window size if you want a default
+# window-width = 120
+# window-height = 40
+
+# Shell integration for proper cleanup
+shell-integration = zsh
+confirm-close-surface = false
+
