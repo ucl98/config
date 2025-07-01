@@ -1,1 +1,14 @@
+.DS_Store
 tmux/plugins/
+
+# Block all config.json files by default (may contain API keys)
+uv/
+config.json
+.claude
+
+# Allow config.json from specific staged folders
+!aerospace/config.json
+!ghostty/config.json
+!nvim/config.json
+!tmux/config.json
+!zathura/config.json

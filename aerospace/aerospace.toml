@@ -18,7 +18,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # You can set 0 to disable the padding feature
 accordion-padding = 0
 
-# Possible values: tiles|accordion
+# Using tiles as default root container layout (cannot be 'floating')
 default-root-container-layout = 'tiles'
 
 # Possible values: horizontal|vertical|auto
@@ -38,22 +38,16 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Also see: https://nikitabobko.github.io/AeroSpace/goodness#disable-hide-app
 automatically-unhide-macos-hidden-apps = false
 
-# [[on-window-detected]]
-# if.app-id = 'com.apple.systempreferences'
-# if.app-name-regex-substring = 'settings'
-# if.window-title-regex-substring = 'substring'
-# if.workspace = 'workspace-name'
-# if.during-aerospace-startup = true
-# check-further-callbacks = true
-# run = ['layout floating', 'move-node-to-workspace S']  # The callback itself
+# Global on-window-detected to make all windows floating by default
+[[on-window-detected]]
+run = 'layout floating'
+
+# App-specific rules for workspace assignments
+# Note: the floating layout is already applied by the global rule above
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'telegram'
-run = 'layout floating'
-
-# [[on-window-detected]]
-# if.app-name-regex-substring = 'finder'
-# run = 'layout floating'
+run = []
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Wezterm'
@@ -61,7 +55,15 @@ run = 'move-node-to-workspace 1 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Ghossty'
+run = 'move-node-to-workspace 1 --focus-follows-window'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Obsidian'
 run = 'move-node-to-workspace 2 --focus-follows-window'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Edge'
+run = 'move-node-to-workspace 3 --focus-follows-window'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Firefox'
@@ -74,20 +76,6 @@ run = 'move-node-to-workspace 4 --focus-follows-window'
 [[on-window-detected]]
 if.app-name-regex-substring = 'Element'
 run = 'move-node-to-workspace 5 --focus-follows-window'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Obsidian'
-run = 'move-node-to-workspace 6 --focus-follows-window'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Edge'
-run = 'move-node-to-workspace 7 --focus-follows-window'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Jan'
-run = ['layout floating']
-
-# alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -140,6 +128,8 @@ outer.right =      4
 # '''
 
 alt-ctrl-shift-f = 'fullscreen'
+# Added keybinding to switch to tiling layout if needed
+alt-ctrl-t = 'layout tiling'
 alt-ctrl-f = 'layout floating'
 
 alt-shift-left = 'join-with left'
@@ -152,10 +142,10 @@ alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-alt-h = 'focus left'
-alt-j = 'focus down'
-alt-k = 'focus up'
-alt-l = 'focus right'
+# alt-h = 'focus left'
+# alt-j = 'focus down'
+# alt-k = 'focus up'
+# alt-l = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-shift-h = 'move left'
@@ -175,7 +165,7 @@ alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
 alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
-# alt-8 = 'workspace 8'
+alt-8 = 'workspace 8'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
@@ -194,11 +184,14 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-semicolon = 'mode service'
 alt-shift-enter = 'mode apps'
 
-cmd-j = 'exec-and-forget open -a /Applications/Jan.app'
+cmd-u = 'exec-and-forget open -a /Applications/Ghostty.app'
+cmd-j = 'exec-and-forget open -a /Applications/claude.app'
+# cmd-j = 'exec-and-forget open -a /Applications/quick-chat.app'
+# cmd-j = 'exec-and-forget open -a /Applications/Jan.app'
 # alt-e = 'exec-and-forget open -a /Applications/Element.app'
 # alt-w = 'exec-and-forget open -a /Applications/Ghostty.app'
-# alt-f = 'exec-and-forget open -a /Applications/Firefox.app'
-# alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
+cmd-i = 'exec-and-forget open -a /Applications/Firefox.app'
+cmd-o = 'exec-and-forget open -a /Applications/Obsidian.app'
 # alt-t = 'exec-and-forget open -a /Applications/Typora.app'
 # alt-g = 'exec-and-forget open -a "/Applications/Google Chrome.app"'
 # alt-v = 'exec-and-forget open -a "/Applications/Visual Studio Code.app"'
@@ -209,7 +202,7 @@ cmd-j = 'exec-and-forget open -a /Applications/Jan.app'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layouhttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layouthttps://nikitabobko.github.io/AeroSpace/guide#layoutsssssst
+f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
 # [mode.apps.binding]
