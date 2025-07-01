@@ -651,8 +651,16 @@ require("lazy").setup({
 					symbols = { "class", "function", "method" },
 				})
 			end, { desc = "[s]earch [s]elect document symbols" })
-			vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[s]earch current [w]ord" })
-			vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[s]earch by [g]rep" })
+			vim.keymap.set("n", "<leader>sw", function()
+				builtin.grep_string({
+					search_dirs = { ".", vim.fn.expand("~/obsidian/notes") },
+				})
+			end, { desc = "[s]earch current [w]ord" })
+			vim.keymap.set("n", "<leader>sg", function()
+				builtin.live_grep({
+					search_dirs = { ".", vim.fn.expand("~/obsidian/notes") },
+				})
+			end, { desc = "[s]earch by [g]rep" })
 			vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[s]earch [d]iagnostics" })
 			vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[s]earch [r]esume" })
 			-- vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
@@ -695,6 +703,21 @@ require("lazy").setup({
 					},
 				})
 			end, { desc = "[s]earch [n]eovim files" })
+
+			-- Search local notes - optimized for obsidian notes only
+			vim.keymap.set("n", "<leader>sl", function()
+				builtin.live_grep({
+					cwd = vim.fn.expand("~/obsidian/notes"),
+					prompt_title = "Search Notes",
+					file_ignore_patterns = { " %- index.md$", "^index%.md$" },
+					hidden = false,
+					no_ignore = false,
+					case_mode = "ignore_case",
+					additional_args = function()
+						return { "--type=md" }
+					end,
+				})
+			end, { desc = "[s]earch [l]ocal notes" })
 		end,
 	},
 
