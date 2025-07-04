@@ -1243,11 +1243,11 @@ local map_keys = vim.keymap.set
 map_keys("n", "<leader>rr", ":UndotreeToggle<CR>")
 -- map_keys("n", "<leader>mo", ':lua require("codewindow").toggle_minimap()<CR>')
 
-map_keys("n", "<C-f>", ":FloatermToggle<CR>")
+-- map_keys("n", "<C-f>", ":FloatermToggle<CR>")
 map_keys("n", "<leader>fe", ":FloatermNew<CR>")
 map_keys("n", "<leader>fx", ":FloatermKill<CR>")
 map_keys("n", "<leader>fp", ":lua create_float_window()<CR>", { noremap = true, silent = true })
-map_keys("t", "<C-f>", "<C-\\><C-n>:FloatermToggle<CR>")
+-- map_keys("t", "<C-f>", "<C-\\><C-n>:FloatermToggle<CR>")
 
 _G.float_buf = nil
 _G.float_win = nil
