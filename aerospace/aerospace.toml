@@ -193,6 +193,9 @@ cmd-u = 'exec-and-forget open -a /Applications/Ghostty.app'
 cmd-i = 'exec-and-forget open -a /Applications/Zen.app'
 # cmd-i = 'exec-and-forget open -a /Applications/Firefox.app'
 cmd-o = 'exec-and-forget open -a /Applications/Obsidian.app'
+
+# Toggle WezTerm with ctrl+f
+ctrl-f = 'exec-and-forget sh -c "if osascript -e \"tell application \\\"System Events\\\" to get visible of process \\\"wezterm-gui\\\"\" 2>/dev/null | grep -q true; then osascript -e \"tell application \\\"System Events\\\" to set visible of process \\\"wezterm-gui\\\" to false\"; else open -a /Applications/WezTerm.app; fi"'
 # alt-t = 'exec-and-forget open -a /Applications/Typora.app'
 # alt-g = 'exec-and-forget open -a "/Applications/Google Chrome.app"'
 # alt-v = 'exec-and-forget open -a "/Applications/Visual Studio Code.app"'
