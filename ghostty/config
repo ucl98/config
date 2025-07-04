@@ -22,3 +22,9 @@ quick-terminal-position = center
 shell-integration-features = sudo,title
 command = tmux new-session -A -s main
 
+# Remember window state (position, size, maximize state)
+window-save-state = always
+
+# Disable close confirmation dialog
+confirm-close-surface = false
+

@@ -2,6 +2,29 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local mux = wezterm.mux
 
+-- Center window on startup with screen-relative dimensions
+wezterm.on('gui-startup', function(cmd)
+  local tab, pane, window = mux.spawn_window(cmd or {})
+  local gui_window = window:gui_window()
+  
+  -- Get screen dimensions
+  local screen = wezterm.gui.screens().main
+  
+  -- Use 90% of screen dimensions
+  local window_width = math.floor(screen.width * 0.9)
+  local window_height = math.floor(screen.height * 0.9)
+  
+  -- Set window size
+  gui_window:set_inner_size(window_width, window_height)
+  
+  -- Calculate center position
+  local x = (screen.width - window_width) / 2
+  local y = (screen.height - window_height) / 2 + 90
+  
+  -- Set window position to center
+  gui_window:set_position(x, y)
+end)
+
 return {
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	skip_close_confirmation_for_processes_named = {
@@ -9,6 +32,7 @@ return {
 		"bash",
 		"zsh",
 	},
+	window_close_confirmation = "NeverPrompt",
 	color_scheme = "Catppuccin Mocha",
 	enable_kitty_graphics = true,
 	enable_tab_bar = false,
@@ -24,6 +48,7 @@ return {
 	},
 	initial_cols = 160,
 	initial_rows = 40,
+	adjust_window_size_when_changing_font_size = false,
 	-- disable_default_key_bindings = true,
 	use_ime = false,
 	keys = {
